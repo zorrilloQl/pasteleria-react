@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+
+
+:root{
+    --color1: #FFF5E1;
+    --color2: #FFC0CB;
+    --color3: #8B4513;
+    --color4: #5D4037;
+    --color5: #B0BEC5;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    font-family: 'Lato', sans-serif;
+    background-color: var(--color1);
+}
+
+img{
+    max-width: 100%;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    background-color: var(--color2);
+    padding: 50px 0;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    height: 70px;
+    max-width: 100%;
+}
+
+.menu .nav-bar ul li{
+    position: relative;
+    float: left;
+}
+
+.menu .nav-bar ul li a{
+    font-size: 18px;
+    padding: 20px;
+    color: white;
+    display: block;
+}
+
+#menu{
+    display: none;
+}
+
+.menu-icono{
+    width: 25px;
+}
+
+.menu label{
+    cursor: pointer;
+    display: none;
+}
+
+/* DROPDOWN */
+.dropbtn {
+    max-width: 70px;
+    background-color: var(--color2);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--color1);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: var(--color4);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: var(--color5); color: white;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: var(--color2);}
+
+.carousel-container {
+    width: 1000px; /* Ancho del carrusel */
+    overflow: hidden; /* Oculta las imágenes que no están visibles */
+    position: relative;
+}
+
+.carousel-slide {
+    
+    margin-top: 10px;
+    display: flex; /* Coloca las imágenes en fila */
+    width: 100%; /* 100% de ancho por cada imagen */
+    animation: scroll-slide 10s infinite; /* Anima el carrusel */
+}
+
+.carousel-slide li {
+    width: 100%; /* Cada imagen ocupa el 100% del contenedor */
+    list-style: none;
+}
+
+.carousel-slide img {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del li */
+    height: auto;
+}
+
+/* Animación */
+@keyframes scroll-slide {
+    0% {
+        transform: translateX(0); /* Comienza en la primera imagen */
+    }
+    33% {
+        transform: translateX(-100%); /* Desplaza a la segunda imagen */
+    }
+    66% {
+        transform: translateX(-200%); /* Desplaza a la tercera imagen */
+    }
+    100% {
+        transform: translateX(0); /* Vuelve a la primera imagen */
+    }
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+/* The dots/bullets/indicators */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active {
+    background-color: #717171;
+}
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .text {font-size: 11px}
+}
+
+
+.btn-2{
+    display: inline-block;
+    padding: 7px 10px;
+    background-color: var(--color5);
+    color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.btn-2:hover{
+    background-color: var(--color2);
+    transform: scale(1.05);
+}
+
+.products{
+    padding: 50px 0;
+    text-align: center;
+}
+
+.products h2{
+    color: #5D4037;
+    font-family: 'Pacifico', sans-serif;
+    font-size: 50px;
+    margin-bottom: 50px;
+    padding: 70px;
+}
+
+.product-content{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+}
+
+.product{
+    text-align: center;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.product:hover{
+    transform: scale(1.05);
+}
+
+.product img{
+    width: 280px;
+    height: 350px;
+    margin-bottom: 20px;
+}
+
+.product h3{
+    font-size: 20px;
+    color: #5D4037;
+    font-family: 'Pacifico', sans-serif;
+    margin-bottom: 15px ;
+}
+
+.product p, .price{
+    font-size: 16px;
+    color: #8B4513;
+    margin-bottom: 15px;
+}
+
+.price{
+    font-weight: 800;
+}
+
+.main-catalogo{
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Pacifico', sans-serif;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.main-catalogo:hover{
+    transform: scale(1.05);
+}
+
+.main-catalogo a{
+    color: #8B4513;
+    padding: 10px 0;
+    text-decoration: none;
+    
+}
+
+.main-catalogo a:hover{
+    color: var(--color2);
+    text-decoration: dotted;
+}
+
+.footer{
+    padding: 50px 0;
+    background-color: var(--color5);
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.link h3{
+    font-size: 10px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.link a{
+    font-size: 16px;
+    color: #DCDCDC;
+    display: block;
+    margin-bottom: 10px;
+}
