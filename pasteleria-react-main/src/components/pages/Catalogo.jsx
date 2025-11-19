@@ -17,6 +17,7 @@ import TE002 from '../../assets/img-product/TE002.jpg';
 
 import Header from '../organisms/Header';
 import Footer from '../organisms/Footer';
+import ProductCard from '../molecules/ProductCard';
 
 const productos = [
     { img: TC001, nombre: 'Torta Cuadrada de chocolate', desc: 'Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizado con mensajes especiales en crema.', precio: '$45.000', id: 'TC001' },
@@ -37,27 +38,34 @@ const productos = [
     { img: TE002, nombre: 'Torta especial de bodas', desc: 'Elegante y deliciosa, esta torta está diseñada para ser el centro de atención en cualquier boda.', precio: '$60.000', id: 'TE002' },
 ];
 
-const Catalogo = () => (
-    <>
-    <Header />
-    <main className="products container" id="list-1">
-        <h2>Catálogo</h2>
-        <div className="product-content responsive-grid">
-        {productos.map(producto => (
-            <div className="product" key={producto.id}>
-            <img src={producto.img} alt={producto.nombre} style={{ display: 'block', margin: '0 auto' }} />
-            <div className="product-decription">
-                <h3>{producto.nombre}</h3>
-                <p>{producto.desc}</p>
-                <p className="price">{producto.precio}</p>
-                <a href="/carrito" className="agregar-carrito btn-2" data-id={producto.id}>Agregar al carrito</a>
-            </div>
-            </div>
-        ))}
-        </div>
-    </main>
-    <Footer />
-    </>
-);
+const Catalogo = () => {
+    const addToCart = (producto, qty) => {
+        try {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const exists = cart.find(p => p.id === producto.id);
+            if (exists) exists.qty = (exists.qty || 0) + qty;
+            else cart.push({ ...producto, qty });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${producto.nombre} x${qty} agregado al carrito`);
+        } catch (e) {
+            console.error('Error al agregar al carrito', e);
+        }
+    };
+
+    return (
+        <>
+            <Header />
+            <main className="products container" id="list-1">
+                <h2>Catálogo</h2>
+                <div className="row">
+                    {productos.map(producto => (
+                        <ProductCard producto={producto} onAdd={addToCart} key={producto.id} />
+                    ))}
+                </div>
+            </main>
+            <Footer />
+        </>
+    );
+};
 
 export default Catalogo;

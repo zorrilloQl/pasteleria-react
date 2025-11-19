@@ -10,6 +10,7 @@ import PI002 from '../../assets/img-product/PI002.jpg';
 import christiann from '../../assets/img/christiann-koepke-AigxB1zfRVo-unsplash.jpg';
 import Header from '../organisms/Header';
 import Footer from '../organisms/Footer';
+import ProductCard from '../molecules/ProductCard';
 
 const productos = [
     { img: TC001, nombre: 'Torta Cuadrada de chocolate', desc: 'Deliciosa torta de chocolate con capas de ganache y un toque de avellanas. Personalizado con mensajes especiales en crema.', precio: '$45.000', id: 'TC001' },
@@ -38,27 +39,18 @@ const PaginaInicio = () => (
         }}
     >
         <h2 style={{ textAlign: 'center', width: '100%' }}>Productos</h2>
-        <div
-        className="product-content responsive-grid"
-        style={{
-            width: '100%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            margin: '0 auto',
-        }}
-        >
-        {productos.map(producto => (
-            <div className="product" key={producto.id} style={{ margin: '0 auto' }}>
-            <img src={producto.img} alt={producto.nombre} style={{ display: 'block', margin: '0 auto' }} />
-            <div className="product-decription">
-                <h3>{producto.nombre}</h3>
-                <p>{producto.desc}</p>
-                <p className="price">{producto.precio}</p>
-                <a href="/carrito" className="agregar-carrito btn-2" data-id={producto.id}>Agregar al carrito</a>
-            </div>
-            </div>
-        ))}
-        </div>
+                <div className="row" style={{ width: '100%' }}>
+                    {productos.map(producto => (
+                        <ProductCard producto={producto} key={producto.id} onAdd={(p, q) => {
+                            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                            const exists = cart.find(item => item.id === p.id);
+                            if (exists) exists.qty = (exists.qty || 0) + q;
+                            else cart.push({ ...p, qty: q });
+                            localStorage.setItem('cart', JSON.stringify(cart));
+                            alert(`${p.nombre} x${q} agregado al carrito`);
+                        }} />
+                    ))}
+                </div>
         <div className="main-catalogo" style={{ textAlign: 'center', width: '100%', margin: '48px 0 48px 0' }}>
         <a href="/catalogo" style={{ fontSize: '2rem', color: 'var(--color4)', fontWeight: 600, textDecoration: 'none', letterSpacing: '0.5px' }}>Ver catálogo completo</a>
         </div>
